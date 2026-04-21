@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Azure RAG OpenAI Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="panel">
+        <h1>Azure RAG OpenAI Assistant</h1>
+        <p>Chat directly with Azure OpenAI, or switch to RAG mode to ground answers in Azure AI Search indexed documents.</p>
+      </header>
+
+      <section class="panel controls">
+        <label>
+          Mode
+          <select id="mode">
+            <option value="chat">Chat</option>
+            <option value="rag">RAG</option>
+          </select>
+        </label>
+        <label>
+          Temperature
+          <input id="temperature" type="number" min="0" max="2" step="0.1" value="0.2" />
+        </label>
+        <button id="init-index" type="button">Initialize Index</button>
+        <button id="load-sample" type="button">Load Sample Docs</button>
+      </section>
+
+      <section class="panel chat-panel">
+        <div id="messages" class="messages"></div>
+        <form id="chat-form" class="chat-form">
+          <input id="question" placeholder="Ask a question..." required />
+          <button type="submit">Send</button>
+        </form>
+        <pre id="meta"></pre>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

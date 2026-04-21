@@ -1,0 +1,8 @@
+{
+  "minReplicas": 2,
+  "maxReplicas": 5,
+  "httpConcurrency": 60,
+  "canaryWeight": 20,
+  "trafficMode": "canary",
+  "cpuAlertThreshold": 70
+}

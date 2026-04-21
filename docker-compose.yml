@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: azure-rag-openai-assistant
+    ports:
+      - "8010:8010"
+    env_file:
+      - .env
+    restart: unless-stopped
