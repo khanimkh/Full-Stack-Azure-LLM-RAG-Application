@@ -59,8 +59,6 @@ uvicorn app.main:app --app-dir backend --reload --port 8010
 - `GET /api/config`
 - `POST /api/chat`
 - `POST /api/rag/chat`
-- `POST /api/rag/index/init`
-- `POST /api/rag/index/load-sample`
 
 ## GitHub Actions and Azure Container Apps
 

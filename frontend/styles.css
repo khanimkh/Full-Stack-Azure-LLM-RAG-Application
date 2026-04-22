@@ -92,10 +92,33 @@ button {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.control-group {
+  display: contents;
+}
+
 .chat-form {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 0.5rem;
+}
+
+.meta-container {
+  background: rgba(13, 19, 33, 0.5);
+  border-radius: 10px;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.meta-container h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.chat-panel h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--accent);
+  font-size: 1rem;
 }
 
 #meta {
@@ -104,6 +127,42 @@ button {
   border-radius: 10px;
   min-height: 80px;
   margin: 0;
+  font-family: Segoe UI, sans-serif;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+.doc-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.75rem;
+  margin-bottom: 0.6rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.doc-card-heading {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.doc-card-meta {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.doc-card-content {
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  max-height: 160px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  padding: 0.5rem;
 }
 
 @media (max-width: 900px) {

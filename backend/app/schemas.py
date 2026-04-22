@@ -15,11 +15,4 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     sources: list[str] = Field(default_factory=list)
-
-
-class InitIndexRequest(BaseModel):
-    index_name: str | None = None
-
-
-class LoadSampleRequest(BaseModel):
-    index_name: str | None = None
+    docs: list[dict] = Field(default_factory=list)

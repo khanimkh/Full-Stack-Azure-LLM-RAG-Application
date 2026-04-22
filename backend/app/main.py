@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.config import Settings, get_settings
-from app.schemas import ChatRequest, ChatResponse, InitIndexRequest, LoadSampleRequest
+from app.schemas import ChatRequest, ChatResponse
 from app.services.rag_chat import RagChatService
 
 
@@ -36,8 +36,11 @@ def config() -> dict[str, str]:
     return {
         "openAiEndpoint": settings.azure_openai_endpoint,
         "chatDeployment": settings.azure_openai_chat_deployment,
+        "embeddingDeployment": settings.azure_openai_embedding_deployment,
         "searchEndpoint": settings.azure_search_endpoint,
         "searchIndexName": settings.azure_search_index_name,
+        "searchVectorField": settings.azure_search_vector_field,
+        "retrievalMode": settings.rag_retrieval_mode,
         "ragTopK": str(settings.rag_top_k),
     }
 
@@ -54,23 +57,7 @@ def chat(payload: ChatRequest) -> ChatResponse:
 @app.post("/api/rag/chat", response_model=ChatResponse)
 def rag_chat(payload: ChatRequest) -> ChatResponse:
     try:
-        answer, sources = get_service().rag_chat(payload.question, payload.history, payload.temperature)
-        return ChatResponse(answer=answer, sources=sources)
-    except Exception as exc:  # noqa: BLE001
-        raise HTTPException(status_code=500, detail=str(exc)) from exc
-
-
-@app.post("/api/rag/index/init")
-def init_index(payload: InitIndexRequest) -> dict:
-    try:
-        return get_service().initialize_index(payload.index_name)
-    except Exception as exc:  # noqa: BLE001
-        raise HTTPException(status_code=500, detail=str(exc)) from exc
-
-
-@app.post("/api/rag/index/load-sample")
-def load_sample(payload: LoadSampleRequest) -> dict:
-    try:
-        return get_service().load_sample_documents(payload.index_name)
+        answer, sources, docs = get_service().rag_chat(payload.question, payload.history, payload.temperature)
+        return ChatResponse(answer=answer, sources=sources, docs=docs)
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=str(exc)) from exc

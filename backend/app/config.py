@@ -12,10 +12,17 @@ class Settings(BaseSettings):
     azure_openai_api_key: str = Field(default="", alias="AZURE_OPENAI_API_KEY")
     azure_openai_api_version: str = Field(default="2024-02-01", alias="AZURE_OPENAI_API_VERSION")
     azure_openai_chat_deployment: str = Field(default="", alias="AZURE_OPENAI_CHAT_DEPLOYMENT")
+    azure_openai_embedding_deployment: str = Field(default="", alias="AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
 
     azure_search_endpoint: str = Field(default="", alias="AZURE_SEARCH_ENDPOINT")
     azure_search_admin_key: str = Field(default="", alias="AZURE_SEARCH_ADMIN_KEY")
     azure_search_index_name: str = Field(default="rag-docs-index", alias="AZURE_SEARCH_INDEX_NAME")
+    azure_search_content_field: str = Field(default="content", alias="AZURE_SEARCH_CONTENT_FIELD")
+    azure_search_title_field: str = Field(default="title", alias="AZURE_SEARCH_TITLE_FIELD")
+    azure_search_source_field: str = Field(default="source", alias="AZURE_SEARCH_SOURCE_FIELD")
+    azure_search_vector_field: str = Field(default="", alias="AZURE_SEARCH_VECTOR_FIELD")
+
+    rag_retrieval_mode: str = Field(default="hybrid", alias="RAG_RETRIEVAL_MODE")
     rag_top_k: int = Field(default=5, alias="RAG_TOP_K")
 
     system_prompt: str = Field(default="You are a helpful assistant.", alias="SYSTEM_PROMPT")
